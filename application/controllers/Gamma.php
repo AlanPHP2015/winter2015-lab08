@@ -11,6 +11,7 @@ class Gamma extends Application {
 
     function __construct() {
         parent::__construct();
+        $this->restrict(ROLE_ADMIN);
     }
 
     //-------------------------------------------------------------
@@ -21,5 +22,4 @@ class Gamma extends Application {
         $this->data['pagebody'] = 'gamma';
         $this->render();
     }
-
 }

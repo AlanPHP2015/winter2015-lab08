@@ -52,8 +52,8 @@ $autoload['packages'] = array();
 |	$autoload['libraries'] = array('database', 'session', 'xmlrpc');
 */
 
-$autoload['libraries'] = array('parser', 'database', 'session');
-
+$autoload['libraries'] = array('parser', 'database');
+$autoload['drivers'] = array('session');
 
 /*
 | -------------------------------------------------------------------
@@ -109,7 +109,7 @@ $autoload['language'] = array();
 |
 */
 
-$autoload['model'] = array();
+$autoload['model'] = array('users');
 
 
 /* End of file autoload.php */

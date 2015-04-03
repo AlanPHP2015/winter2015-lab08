@@ -58,16 +58,30 @@ class Application extends CI_Controller {
     
     private function makemenu() {
         $menu = array();
-        $menu = array(
-            'menudata' => array(
-                array('name' => "Alpha", 'link' => '/alpha'),
-                array('name' => "Beta", 'link' => '/beta'),
-                array('name' => "Gamma", 'link' => '/gamma'),
-                array('name' => "Login", 'link' => '/auth'),
-                array('name' => "Logout", 'link' => '/auth/logout'), 
-                )
-            );
-        die(var_dump($menu));
+        $userRole = $this->session->userdata('userRole');
+        $menudata[] = array('name' => "Alpha", 'link' => '/alpha');
+//        $menu = array(
+//            'menudata' => array(
+//                array('name' => "Alpha", 'link' => '/alpha'),
+//                array('name' => "Beta", 'link' => '/beta'),
+//                array('name' => "Gamma", 'link' => '/gamma'),
+//                array('name' => "Login", 'link' => '/auth'),
+//                array('name' => "Logout", 'link' => '/auth/logout'), 
+//                )
+//            );
+        if(isset($userRole)) {
+            if($userRole == ROLE_USER || $userRole == ROLE_ADMIN) {
+                $menudata[] = array('name' => "Beta", 'link' => '/beta');
+            }
+            if($userRole == ROLE_ADMIN) {
+                $menudata[] = array('name' => "Gamma", 'link' => '/gamma');
+            }
+            $menudata[] = array('name' => "Logout", 'link' => '/auth/logout');
+        } else {
+            $menudata[] = array('name' => "Login", 'link' => '/auth');
+        }
+        $menu['menudata'] = $menudata;
+        //die(var_dump($menu));
         return $menu;
     }
 }
